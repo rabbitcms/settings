@@ -1,0 +1,28 @@
+{
+    "name": "rabbitcms/settings",
+    "description": "Settings module for RabbitCMS",
+    "require": {
+    },
+    "type": "october-module",
+    "authors": [
+        {
+            "name": "Kulyk Dmytro",
+            "email": "lnkvisitor.ts@gmail.com"
+        },
+        {
+            "name": "Dimon Zhurakovskiy",
+            "email": "dmytro.zhurakovsky@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "Database"
+        ],
+        "psr-4": {
+            "RabbitCMS\\Settings\\": "./"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    }
+}
