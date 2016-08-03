@@ -1,7 +1,13 @@
 <?php
-/**
- * This file is part of NAS-Broker projects
- *
- * @author lnkvisitor
- * @since  03.08.16
- */
+
+use Illuminate\Routing\Router;
+use RabbitCMS\Backend\Support\Backend;
+
+return [
+    'boot'   => function (Backend $backend) {
+       // $backend->addMenu('system','settings',trans('settings::common.Settings'),route())
+    },
+    'routes' => function (Router $router) {
+        $router->get('', ['as' => 'view', 'uses' => 'Settings@getIndex']);
+    },
+];
