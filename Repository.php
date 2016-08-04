@@ -4,7 +4,6 @@ namespace RabbitCMS\Settings;
 
 use Illuminate\Cache\Repository as CacheRepository;
 use Illuminate\Config\Repository as ConfigRepository;
-use RabbitCMS\Settings\Entities\Settings as SettingsEntity;
 
 class Repository extends ConfigRepository
 {
@@ -19,16 +18,17 @@ class Repository extends ConfigRepository
      * Settings constructor.
      *
      * @param CacheRepository $cache
+     * @param Manager         $manager
      */
-    public function __construct(CacheRepository $cache)
+    public function __construct(CacheRepository $cache, Manager $manager)
     {
         $this->cache = $cache;
 
         parent::__construct(
             $this->cache->rememberForever(
                 self::CACHE_KEY,
-                function () {
-                    return SettingsEntity::all()->pluck('value', 'name')->all();
+                function () use ($manager) {
+                    return Entities\Settings::all()->pluck('value', 'name')->all();
                 }
             )
         );

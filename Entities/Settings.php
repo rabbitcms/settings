@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @property-read int    $id
  * @property-read string $name
- * @property             $value
+ * @property      mixed  $value
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
  */
@@ -29,4 +29,11 @@ class Settings extends Eloquent
      * @var array
      */
     protected $fillable = ['name', 'value'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = ['value' => 'json'];
 }
