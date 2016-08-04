@@ -2,74 +2,10 @@
 namespace RabbitCMS\Settings;
 
 use Carbon\Carbon;
-use Countable;
 use DateTimeInterface;
-use Iterator;
-use Pingpong\Modules\Collection;
+use Illuminate\Support\Collection;
 use Pingpong\Modules\Module;
 use Pingpong\Modules\Repository as ModulesRepository;
-
-class Group implements Iterator, Countable
-{
-    protected $items = [];
-
-    protected $caption;
-
-    public function __construct($items = [], string $caption = '')
-    {
-        $this->caption = $caption;
-        $this->items = $items;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function next()
-    {
-        next($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function key()
-    {
-        return key($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function valid()
-    {
-        return $this->current() !== false;
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return Meta
-     */
-    public function current()
-    {
-        return current($this->items) ?: null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rewind()
-    {
-        reset($this->items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function count()
-    {
-        return count($this->items);
-    }
-}
 
 class Manager
 {
@@ -79,7 +15,7 @@ class Manager
     protected $modules;
 
     /**
-     * @var Collection|Group[]|Meta[][]
+     * @var Collection|Group[]
      */
     protected $groups;
 
@@ -133,6 +69,18 @@ class Manager
     }
 
     /**
+     * Get settings meta info by name.
+     *
+     * @param string $name
+     *
+     * @return Meta|null
+     */
+    public function getMetaByName(string $name)
+    {
+        return $this->all->get($name);
+    }
+
+    /**
      * Return a timestamp as DateTime object.
      *
      * @param  mixed $value
@@ -178,19 +126,27 @@ class Manager
     }
 
     /**
-     * Get settings meta info by name.
+     * @param string $group
      *
-     * @param string $name
-     *
-     * @return Meta|null
+     * @return Collection|Meta[]
      */
-    public function getMetaByName(string $name)
+    public function getMetaGroup(string $group):Collection
     {
-        return $this->all->get($name);
+        return $this->all->filter(
+            function (Meta $meta) use ($group) {
+                return $meta->getGroup() === $group;
+            }
+        );
     }
 
-    public function getMetaGroup(string $group) {
+    /**
+     * @return Collection|Group[]
+     */
+    public function getGroups()
+    {
+        $this->getAllMeta();
 
+        return $this->groups;
     }
 
     /**
@@ -210,6 +166,21 @@ class Manager
                     foreach ($config['settings'] as $name => $option) {
                         $meta = new Meta($name, (array)$option);
                         $this->addMeta($meta);
+                    }
+
+                    if (array_key_exists('groups', $config)) {
+                        foreach ($config['groups'] as $name => $group) {
+                            if (!is_array($group)) {
+                                $group = ['caption' => $group];
+                            }
+                            if ($this->groups->has($name)) {
+                                if (empty($group['slave'])) {
+                                    throw  new \RuntimeException('Settings group `' . $name . '` already defined.');
+                                }
+                                continue;
+                            }
+                            $this->groups->put($name, new Group($name, $group));
+                        }
                     }
                 }
             }
