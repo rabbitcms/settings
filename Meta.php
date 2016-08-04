@@ -54,7 +54,7 @@ class Meta
         }
 
         $this->caption = array_key_exists('caption', $options) ? $options['caption'] : $name;
-        $this->type = array_key_exists('type', $options) ? $options['type'] : self::TYPE_JSON;
+        $this->type = array_key_exists('type', $options) ? $options['type'] : self::TYPE_STRING;
 
         if (array_key_exists('value', $options)) {
             $this->value = $options['value'];
