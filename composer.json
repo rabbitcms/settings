@@ -2,8 +2,7 @@
   "name": "rabbitcms/settings",
   "description": "Settings module for RabbitCMS",
   "require": {
-    "rabbitcms/carrot": ">=0.2",
-    "rabbitcms/forms": ">=0.1",
+    "rabbitcms/carrot": "^0.2",
     "composer/installers": "^1.1"
   },
   "type": "october-module",
