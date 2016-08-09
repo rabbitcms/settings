@@ -4,8 +4,7 @@
   "require": {
     "rabbitcms/carrot": ">=0.2",
     "rabbitcms/forms": ">=0.1",
-    "composer/installers": "^1.1",
-    "rabbitcms/settings": "^0.0.4"
+    "composer/installers": "^1.1"
   },
   "type": "october-module",
   "authors": [
