@@ -19,7 +19,7 @@ class ModuleProvider extends \RabbitCMS\Carrot\Providers\ModuleProvider
         $this->app->singleton(Repository::class);
         $this->app->singleton(Manager::class);
 
-        AliasLoader::getInstance()->alias('Settings', SettingsFacade::class);
+        AliasLoader::getInstance(['Settings' => SettingsFacade::class]);
     }
 
     /**

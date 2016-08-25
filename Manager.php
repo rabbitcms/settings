@@ -4,13 +4,13 @@ namespace RabbitCMS\Settings;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Support\Collection;
-use Pingpong\Modules\Module;
-use Pingpong\Modules\Repository as ModulesRepository;
+use RabbitCMS\Carrot\Modules\Contracts\ModulesManager;
+use RabbitCMS\Carrot\Modules\Module;
 
 class Manager
 {
     /**
-     * @var ModulesRepository
+     * @var ModulesManager
      */
     protected $modules;
 
@@ -24,7 +24,7 @@ class Manager
      */
     protected $all;
 
-    public function __construct(ModulesRepository $modules)
+    public function __construct(ModulesManager $modules)
     {
         $this->modules = $modules;
         $this->groups = new Collection();
@@ -160,7 +160,7 @@ class Manager
             $this->all = [];
             foreach ($this->modules->enabled() as $module) {
                 /* @var Module $module */
-                $path = $module->getExtraPath('Config/settings.php');
+                $path = $module->getPath('Config/settings.php');
                 if (is_file($path)) {
                     $config = require($path);
                     foreach ($config['settings'] as $name => $option) {

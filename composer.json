@@ -2,8 +2,7 @@
   "name": "rabbitcms/settings",
   "description": "Settings module for RabbitCMS",
   "require": {
-    "rabbitcms/carrot": "^0.2",
-    "composer/installers": "^1.1"
+    "rabbitcms/carrot": "^0.3.0"
   },
   "type": "october-module",
   "authors": [
@@ -26,5 +25,13 @@
     "files": [
       "helpers.php"
     ]
+  },
+  "extra": {
+    "module": {
+      "name": "settings",
+      "namespace": "RabbitCMS\\Settings",
+      "enabled": true,
+      "providers": "RabbitCMS\\Settings\\Providers\\ModuleProvider"
+    }
   }
 }
