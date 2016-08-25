@@ -1,7 +1,6 @@
 {
   "name": "rabbitcms/settings",
   "description": "Settings module for RabbitCMS",
-  "type": "october-module",
   "authors": [
     {
       "name": "Kulyk Dmytro",
