@@ -3,11 +3,12 @@
 namespace RabbitCMS\Settings\Providers;
 
 use Illuminate\Foundation\AliasLoader;
+use RabbitCMS\Modules\ModuleProvider;
 use RabbitCMS\Settings\Manager;
 use RabbitCMS\Settings\Repository;
 use RabbitCMS\Settings\Support\Facade\SettingsFacade;
 
-class ModuleProvider extends \RabbitCMS\Carrot\Providers\ModuleProvider
+class SettingsModuleProvider extends ModuleProvider
 {
     /**
      * @inheritdoc

@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "rabbitcms/carrot": "^0.3.2",
+    "rabbitcms/modules": "^0.1.0",
     "rabbitcms/forms": ">=0.1"
   },
   "suggest": {
@@ -35,7 +35,7 @@
       "name": "settings",
       "namespace": "RabbitCMS\\Settings",
       "enabled": true,
-      "providers": "RabbitCMS\\Settings\\Providers\\ModuleProvider",
+      "providers": "RabbitCMS\\Settings\\Providers\\SettingsModuleProvider",
       "system": true
     }
   }
