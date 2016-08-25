@@ -1,9 +1,6 @@
 {
   "name": "rabbitcms/settings",
   "description": "Settings module for RabbitCMS",
-  "require": {
-    "rabbitcms/carrot": "^0.3.0"
-  },
   "type": "october-module",
   "authors": [
     {
@@ -15,6 +12,13 @@
       "email": "dmytro.zhurakovsky@gmail.com"
     }
   ],
+  "require": {
+    "rabbitcms/carrot": "^0.3.2",
+    "rabbitcms/forms": ">=0.1"
+  },
+  "suggest": {
+    "rabbitcms/backend": "Required to backend UX."
+  },
   "autoload": {
     "classmap": [
       "Database"
@@ -31,7 +35,8 @@
       "name": "settings",
       "namespace": "RabbitCMS\\Settings",
       "enabled": true,
-      "providers": "RabbitCMS\\Settings\\Providers\\ModuleProvider"
+      "providers": "RabbitCMS\\Settings\\Providers\\ModuleProvider",
+      "system": true
     }
   }
 }
