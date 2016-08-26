@@ -4,8 +4,9 @@ namespace RabbitCMS\Settings;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Support\Collection;
-use RabbitCMS\Carrot\Modules\Contracts\ModulesManager;
-use RabbitCMS\Carrot\Modules\Module;
+use RabbitCMS\Modules\Contracts\ModulesManager;
+use RabbitCMS\Modules\Module;
+
 
 class Manager
 {
