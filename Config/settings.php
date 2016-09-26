@@ -2,12 +2,12 @@
 return [
     'groups' => [
         'system' => [
-            'label'    => trans('settings::common.System'),
+            'caption'  => trans('settings::common.system'),
             'priority' => PHP_INT_MAX - 1,
             'tab'      => 'system',
         ],
         'other'  => [
-            'label'    => trans('settings::common.Other'),
+            'caption'  => trans('settings::common.other'),
             'priority' => PHP_INT_MAX,
             'tab'      => 'other',
         ],

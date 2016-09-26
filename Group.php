@@ -2,7 +2,9 @@
 
 namespace RabbitCMS\Settings;
 
-class Group
+use Illuminate\Support\Collection;
+
+class Group extends Collection
 {
     protected $name;
 
@@ -12,6 +14,8 @@ class Group
 
     public function __construct(string $name, array $options = [])
     {
+        parent::__construct();
+
         $this->name = $name;
         $this->caption = $options['caption'] ?? $name;
         $this->priority = $options['priority'] ?? $this->priority;

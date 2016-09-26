@@ -7,21 +7,14 @@ return [
     'boot'     => function (Backend $backend) {
         $backend->addMenuResolver(
             function (Backend $backend) {
-                $backend->addMenu(
-                    'system',
-                    'settings',
-                    trans('settings::common.Settings'),
-                    route('backend.settings.view'),
-                    'fa icon-settings',
-                    ['system.settings']
-                );
+                $backend->addMenu('system', 'settings', trans('settings::common.settings'), route('backend.settings.view'), 'fa fa-angle-double-right', ['system.settings.read']);
             }
         );
 
         $backend->addAclResolver(
             function (Backend $backend) {
-                $backend->addAcl('system', 'settings', trans('settings::common.ReadSettings'));
-                $backend->addAcl('system', 'settings.write', trans('settings::common.ModifySettings'));
+                $backend->addAcl('system', 'settings.read', trans('settings::acl.settings.read'));
+                $backend->addAcl('system', 'settings.write', trans('settings::acl.settings.write'));
             }
         );
     },
@@ -30,16 +23,15 @@ return [
     },
     'requirejs' => [
         'packages' => [
-            'settings' => [
+            'rabbitcms.settings' => [
                 'location' => 'js',
-                'main'     => 'main',
+                'main'     => 'settings',
             ],
         ],
     ],
     'handlers' => [
         '' => [
-            'module'   => 'settings',
-            'exec'     => 'table',
+            'module'   => 'rabbitcms.settings',
             'menuPath' => 'system.settings',
         ],
     ],

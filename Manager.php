@@ -29,7 +29,7 @@ class Manager
     {
         $this->modules = $modules;
         $this->groups = new Collection();
-        $this->all = new Collection();
+        //$this->all = new Collection();
     }
 
     public function getValue(string $name, $value)
@@ -155,22 +155,17 @@ class Manager
      *
      * @return array
      */
-    protected function getAllMeta(): array
+    protected function getAllMeta()
     {
         if ($this->all === null) {
-            $this->all = [];
+            $this->all = new Collection();
             foreach ($this->modules->enabled() as $module) {
                 /* @var Module $module */
                 $path = $module->getPath('Config/settings.php');
                 if (is_file($path)) {
                     $config = require($path);
-                    foreach ($config['settings'] as $name => $option) {
-                        $meta = new Meta($name, (array)$option);
-                        $this->addMeta($meta);
-                    }
-
                     if (array_key_exists('groups', $config)) {
-                        foreach ($config['groups'] as $name => $group) {
+                        foreach ((array)$config['groups'] as $name => $group) {
                             if (!is_array($group)) {
                                 $group = ['caption' => $group];
                             }
@@ -181,6 +176,13 @@ class Manager
                                 continue;
                             }
                             $this->groups->put($name, new Group($name, $group));
+                        }
+                    }
+
+                    if (array_key_exists('settings', $config)) {
+                        foreach ((array)$config['settings'] as $name => $option) {
+                            $meta = new Meta($name, (array)$option);
+                            $this->addMeta($meta);
                         }
                     }
                 }
@@ -207,6 +209,7 @@ class Manager
         }
 
         $this->all->put($meta->getName(), $meta);
+        //$this->groups->get($group);
         $this->groups->get($group)->put($meta->getName(), $meta);
     }
 }

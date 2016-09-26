@@ -1,0 +1,14 @@
+define(["require", "exports", "rabbitcms/backend"], function (require, exports, backend_1) {
+    "use strict";
+    var Settings = (function (_super) {
+        __extends(Settings, _super);
+        function Settings() {
+            _super.apply(this, arguments);
+        }
+        Settings.prototype.init = function (portlet) {
+        };
+        return Settings;
+    }(backend_1.MicroEvent));
+    return new Settings();
+});
+//# sourceMappingURL=settings.js.map
