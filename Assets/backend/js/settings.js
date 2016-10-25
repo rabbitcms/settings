@@ -1,3 +1,4 @@
+/// <reference path="../../../../backend/Assets/backend/dt/index.d.ts" />
 define(["require", "exports", "rabbitcms/backend"], function (require, exports, backend_1) {
     "use strict";
     var Settings = (function (_super) {
