@@ -18,9 +18,6 @@ return [
             }
         );
     },
-    'routes'   => function (Router $router) {
-        $router->get('', ['as' => 'view', 'uses' => 'Settings@getIndex']);
-    },
     'requirejs' => [
         'packages' => [
             'rabbitcms.settings' => [

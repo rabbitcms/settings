@@ -12,7 +12,7 @@
     }
   ],
   "require": {
-    "rabbitcms/modules": "^0.1.0",
+    "rabbitcms/modules": "^1.1.0",
     "rabbitcms/forms": ">=0.1"
   },
   "suggest": {
@@ -20,20 +20,17 @@
   },
   "autoload": {
     "classmap": [
-      "Database"
+      "database/migrations/"
     ],
     "psr-4": {
-      "RabbitCMS\\Settings\\": "./"
+      "RabbitCMS\\Settings\\": "./src"
     },
     "files": [
-      "helpers.php"
+      "src/helpers.php"
     ]
   },
   "extra": {
     "module": {
-      "name": "settings",
-      "namespace": "RabbitCMS\\Settings",
-      "enabled": true,
       "providers": "RabbitCMS\\Settings\\Providers\\SettingsModuleProvider",
       "system": true
     }
