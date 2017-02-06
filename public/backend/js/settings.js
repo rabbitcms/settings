@@ -4,7 +4,7 @@ define(["require", "exports", "rabbitcms/backend"], function (require, exports, 
     var Settings = (function (_super) {
         __extends(Settings, _super);
         function Settings() {
-            _super.apply(this, arguments);
+            return _super.apply(this, arguments) || this;
         }
         Settings.prototype.init = function (portlet) {
         };

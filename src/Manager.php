@@ -4,14 +4,14 @@ namespace RabbitCMS\Settings;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Support\Collection;
-use RabbitCMS\Modules\Contracts\ModulesManager;
+use RabbitCMS\Modules\Managers\Modules;
 use RabbitCMS\Modules\Module;
 
 
 class Manager
 {
     /**
-     * @var ModulesManager
+     * @var Modules
      */
     protected $modules;
 
@@ -25,7 +25,7 @@ class Manager
      */
     protected $all;
 
-    public function __construct(ModulesManager $modules)
+    public function __construct(Modules $modules)
     {
         $this->modules = $modules;
         $this->groups = new Collection();
